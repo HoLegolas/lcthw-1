@@ -1,1 +1,1 @@
-((nil . ((company-clang-arguments . ("-I/home/jrx/src/jrxpython/lcthw/ex36/liblcthw/src/")))))
+((nil . ((company-clang-arguments . ("-I/home/jrx/src/lcthw/ex36/liblcthw/src/")))))
