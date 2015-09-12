@@ -1,0 +1,17 @@
+TAGS$
+GPATH
+build/
+
+syntax: glob
+*.pyc
+*.pyo
+*.pyd
+*.orig
+*.log
+*.pdf
+*.ly
+*.o
+*_tests
+
+syntax: regexp
+.*\/\#[^\/]*\#$
