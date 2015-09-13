@@ -192,7 +192,7 @@ static inline void BSTree_replace_node_in_parent(BSTree *map, BSTreeNode *node, 
   }
 }
 
-static inline void *BSTree_swap(BSTreeNode *a, BSTreeNode *b)
+static inline void BSTree_swap(BSTreeNode *a, BSTreeNode *b)
 {
   void *temp = NULL;
   temp = b->key; b->key = a->key; a->key = temp;
