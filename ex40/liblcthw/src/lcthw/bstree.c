@@ -108,3 +108,60 @@ int BSTree_set(BSTree *map, void *key, void *data)
   return -1;
 }
 
+static inline BSTreeNode *BSTree_getnode(BSTree *map, BSTreeNode *node, void *key)
+{
+  int cmp = map->compare(node->key, key);
+
+  if(cmp == 0) {
+    return node;
+  } else if(cmp < 0) {
+    if(node->left) {
+      return BSTree_getnode(map, node->left, key);
+    } else {
+      return NULL;
+    }
+  } else {
+    if(node->right) {
+      return BSTree_getnode(map, node->right, key);
+    } else {
+      return NULL;
+    }
+  }
+}
+
+void *BSTree_get(BSTree *map, void *key)
+{
+  if(map->root == NULL) {
+    return NULL;
+  } else {
+    BSTreeNode *node = BSTree_getnode(map, map->root, key);
+    return node == NULL ? NULL : node->data;
+  }
+}
+
+static inline int BSTree_traverse_nodes(BSTreeNode *node, BSTree_traverse_cb traverse_cb)
+{
+  int rc = 0;
+
+  if(node->left) {
+    rc = BSTree_traverse_nodes(node->left, traverse_cb);
+    if(rc != 0) return rc;
+  }
+
+  if(node->right) {
+    rc = BSTree_traverse_nodes(node->right, traverse_cb);
+    if(rc != 0) return rc;
+  }
+
+  return traverse_cb(node);
+}
+
+int BSTree_traverse(BSTree *map, BSTree_traverse_cb traverse_cb)
+{
+  if(map->root) {
+    return BSTree_traverse_nodes(map->root, traverse_cb);
+  }
+
+  return 0;
+}
+
