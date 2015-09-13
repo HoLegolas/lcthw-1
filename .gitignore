@@ -1,5 +1,7 @@
 TAGS$
 GPATH
+GTAGS
+GRTAGS
 build/
 
 syntax: glob
