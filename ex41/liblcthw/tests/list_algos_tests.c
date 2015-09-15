@@ -88,7 +88,7 @@ char *test_merge_sort()
 
   // should work on an already sorted list
   List *res2 = List_merge_sort(res, (List_compare) strcmp);
-  mu_assert(is_sorted(res2), "Words should be sorted if already merge sorted.");
+  mu_assert(is_sorted(res), "Words should be sorted if already merge sorted.");
   List_destroy(res2);
   List_destroy(res);
 

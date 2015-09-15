@@ -2,8 +2,11 @@
 # -example where heapsort is already defined in stdlib.h
 # See :
 # http://stackoverflow.com/questions/4976904/os-x-contains-heapsort-in-stdlib-h-which-conflicts-with-heapsort-in-sort-library#4976914
+# -O0 to be able to see variables through gdb (you could also try -Og)
+# See : http://stackoverflow.com/questions/30591793/optimized-out-in-gdb-in-ubuntu
 
-CFLAGS=-g -O2 -Wall -Wextra -Isrc -rdynamic -D_POSIX_C_SOURCE $(OPTFLAGS)
+
+CFLAGS=-g -O0 -Wall -Wextra -Isrc -rdynamic -D_POSIX_C_SOURCE $(OPTFLAGS)
 LDLIBS=$(OPTLIBS)
 PREFIX?=/usr/local
 
