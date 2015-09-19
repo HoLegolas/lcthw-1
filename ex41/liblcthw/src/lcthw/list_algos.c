@@ -80,6 +80,8 @@ inline List *List_merge(List *left, List *right, List_compare cmp)
 
 List *List_merge_sort(List *list, List_compare cmp)
 {
+  List *result = NULL;
+
   if(List_count(list) <= 1) {
     return list;
   }
@@ -104,5 +106,10 @@ List *List_merge_sort(List *list, List_compare cmp)
   if(sort_left != left) List_destroy(left);
   if(sort_right != right) List_destroy(right);
 
-  return List_merge(sort_left, sort_right, cmp);
+  result = List_merge(sort_left, sort_right, cmp);
+
+  List_destroy(sort_left);
+  List_destroy(sort_right);
+
+  return result;
 }
