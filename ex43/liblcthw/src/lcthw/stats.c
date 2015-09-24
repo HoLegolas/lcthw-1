@@ -57,12 +57,12 @@ double Stats_mean(Stats *st)
 
 double Stats_stddev(Stats *st)
 {
-  return sqrt((st->sumq - (st->sum * st->sum / st->n)) / (st->n - 1));
+  return sqrt((st->sumsq - (st->sum * st->sum / st->n)) / (st->n - 1));
 }
 
 void Stats_sample(Stats *st, double s)
 {
-  st->num += s;
+  st->sum += s;
   st->sumsq += s * s;
 
   if(st->n == 0) {
