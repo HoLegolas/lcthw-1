@@ -6,7 +6,7 @@
 # See : http://stackoverflow.com/questions/30591793/optimized-out-in-gdb-in-ubuntu
 
 
-CFLAGS=-g -O0 -Wall -Wextra -Isrc -rdynamic -D_POSIX_C_SOURCE $(OPTFLAGS)
+CFLAGS=-g -O0 -Wall -Wextra -Isrc -rdynamic -std=c99 -D_POSIX_C_SOURCE $(OPTFLAGS)
 LDLIBS=$(OPTLIBS)
 PREFIX?=/usr/local
 
