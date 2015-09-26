@@ -88,11 +88,27 @@ char *test_operations()
   return NULL;
 }
 
+char *test_recreate()
+{
+  Stats *st = Stats_recreate(expect.sum, expect.sumsq, expect.n, expect.min, expect.max);
+
+  mu_assert(st->sum == expect.sum, "sum not equal");
+  mu_assert(st->sumsq == expect.sumsq, "sumsq not equal");
+  mu_assert(st->n == expect.n, "n not equal");
+  mu_assert(st->min == expect.min, "min not equal");
+  mu_assert(st->max == expect.max, "max not equal");
+  mu_assert(EQ(expect_mean, Stats_mean(st), 3), "mean not equal");
+  mu_assert(EQ(expect_stddev, Stats_stddev(st), 3), "stddev not equal");
+
+  return NULL;
+}
+
 char *all_tests()
 {
   mu_suite_start();
 
   mu_run_test(test_operations);
+  mu_run_test(test_recreate);
 
   return NULL;
 
