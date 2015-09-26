@@ -77,7 +77,7 @@ char *test_operations()
 
   Stats_dump(st);
 
-  mu_assert(EQ(st->numsq, expect.sumsq, 3), "sumsq not valid");
+  mu_assert(EQ(st->sumsq, expect.sumsq, 3), "sumsq not valid");
   mu_assert(EQ(st->sum, expect.sum, 3), "sum not valid");
   mu_assert(EQ(st->min, expect.min, 3), "min not valid");
   mu_assert(EQ(st->max, expect.max, 3), "max not valid");
