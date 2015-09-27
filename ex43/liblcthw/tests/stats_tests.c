@@ -85,6 +85,8 @@ char *test_operations()
   mu_assert(EQ(expect_mean, Stats_mean(st), 3), "mean not valid");
   mu_assert(EQ(expect_stddev, Stats_stddev(st), 3), "stddev not valid");
 
+  Stats_destroy(st);
+
   return NULL;
 }
 
@@ -99,6 +101,8 @@ char *test_recreate()
   mu_assert(st->max == expect.max, "max not equal");
   mu_assert(EQ(expect_mean, Stats_mean(st), 3), "mean not equal");
   mu_assert(EQ(expect_stddev, Stats_stddev(st), 3), "stddev not equal");
+
+  Stats_destroy(st);
 
   return NULL;
 }

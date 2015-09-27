@@ -50,6 +50,13 @@ Stats *Stats_create()
   return Stats_recreate(0.0, 0.0, 0L, 0.0, 0.0);
 }
 
+void Stats_destroy(Stats *st)
+{
+  if(st) {
+    free(st);
+  }
+}
+
 double Stats_mean(Stats *st)
 {
   return st->sum / st->n;

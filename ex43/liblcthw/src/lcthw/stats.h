@@ -38,6 +38,8 @@ Stats *Stats_recreate(double sum,
 
 Stats *Stats_create();
 
+void Stats_destroy(Stats *st);
+
 double Stats_mean(Stats *st);
 
 double Stats_stddev(Stats *st);
