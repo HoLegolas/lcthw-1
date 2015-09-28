@@ -1,6 +1,6 @@
 /*-*- coding: utf-8 -*-
 
- Copyright (c) 2015 Jérôme Radix <jerome.radix@gmail.com>
+ Copyright (c) 2015 Zed A. Shaw <zedshaw@zedshaw.com>
 
  Permission to use, copy, modify, and distribute this software for any
  purpose with or without fee is hereby granted, provided that the above
