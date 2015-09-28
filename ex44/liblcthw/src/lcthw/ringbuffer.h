@@ -22,7 +22,7 @@ Exercise 44 : Ring Buffer
 #ifndef __RINGBUFFER_H
 #define __RINGBUFFER_H
 
-#include <lcthw/bstlib.h>
+#include <lcthw/bstrlib.h>
 
 typedef struct {
   char *buffer;
@@ -61,9 +61,9 @@ bstring RingBuffer_gets(RingBuffer *buffer, int amount);
 
 #define RingBuffer_get_all(B) RingBuffer_gets((B), RingBuffer_available_data((B)))
 
-#define RingBuffer_starts_at(B) ((B)->length + (B)->start)
+#define RingBuffer_starts_at(B) ((void *)((B)->length + (B)->start))
 
-#define RingBuffer_ends_at(B) ((B)->buffer + (B)->end)
+#define RingBuffer_ends_at(B) ((void *)((B)->buffer + (B)->end))
 
 #define RingBuffer_commit_read(B, A) ((B)->start = ((B)->start + (A)) % (B)->length)
 
