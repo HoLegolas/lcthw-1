@@ -49,7 +49,7 @@ int RingBuffer_write(RingBuffer *buffer, char *data, int length);
 
 bstring RingBuffer_gets(RingBuffer *buffer, int amount);
 
-#define RingBuffer_available_data(B) (((B)->end + 1) % (B)->length - (B)->start - 1)
+#define RingBuffer_available_data(B) ((B)->end % (B)->length - (B)->start)
 
 #define RingBuffer_available_space(B) ((B)->length - (B)->end - 1)
 
@@ -61,7 +61,7 @@ bstring RingBuffer_gets(RingBuffer *buffer, int amount);
 
 #define RingBuffer_get_all(B) RingBuffer_gets((B), RingBuffer_available_data((B)))
 
-#define RingBuffer_starts_at(B) ((void *)((B)->length + (B)->start))
+#define RingBuffer_starts_at(B) ((void *)((B)->buffer + (B)->start))
 
 #define RingBuffer_ends_at(B) ((void *)((B)->buffer + (B)->end))
 
