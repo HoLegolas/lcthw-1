@@ -69,13 +69,13 @@ int RingBuffer_write(RingBuffer *buffer, char *data, int length)
 int RingBuffer_read(RingBuffer *buffer, char *target, int amount)
 {
   check_debug(amount <= RingBuffer_available_data(buffer),
-	"Not enough in the buffer: has %d, needs %d",
-	RingBuffer_available_data(buffer), amount);
+	      "Not enough in the buffer: has %d, needs %d",
+	      RingBuffer_available_data(buffer), amount);
 
   void *result = memcpy(target, RingBuffer_starts_at(buffer), amount);
   check(result != NULL, "Failed to write buffer into target.");
 
-  RingBuffer_commit_write(buffer, amount);
+  RingBuffer_commit_read(buffer, amount);
 
   if(buffer->end == buffer->start) {
     buffer->start = buffer->end = 0;
