@@ -121,6 +121,7 @@ char *test_read_write2()
   mu_assert(data, "Didn't get any bstring from gets.");
   mu_assert(bisstemeqblk(data, "llo Again", 9),
             "Wrong get_all result.");
+  bdestroy(data);
 
   RingBuffer_destroy(buffer);
 
