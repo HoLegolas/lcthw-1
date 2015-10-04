@@ -68,7 +68,7 @@ int RingBuffer_write(RingBuffer *buffer, char *data, int length)
 
 int RingBuffer_read(RingBuffer *buffer, char *target, int amount)
 {
-  check_debug(amount <= RingBuffer_available_space(buffer),
+  check_debug(amount <= RingBuffer_available_data(buffer),
 	"Not enough in the buffer: has %d, needs %d",
 	RingBuffer_available_data(buffer), amount);
 
