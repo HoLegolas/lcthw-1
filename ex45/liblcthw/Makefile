@@ -6,7 +6,7 @@
 # See : http://stackoverflow.com/questions/30591793/optimized-out-in-gdb-in-ubuntu
 
 
-CFLAGS=-g -O0 -Wall -Wextra -Isrc -rdynamic -std=c99 -lm -D_POSIX_C_SOURCE $(OPTFLAGS)
+CFLAGS=-g -O0 -Wall -Wextra -Isrc -rdynamic -std=c99 -lm -D_POSIX_C_SOURCE=200112L $(OPTFLAGS)
 LDLIBS=$(OPTLIBS)
 PREFIX?=/usr/local
 
@@ -67,4 +67,4 @@ check:
 	@echo Files with potentially dangerous functions.
 	@egrep $(BADFUNCS) $(SOURCES) || true
 
-$(PROGRAMS): CFLAGS += $(TARGET)
+$(PROGRAMS): LDLIBS += $(TARGET)
