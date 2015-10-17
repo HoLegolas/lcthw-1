@@ -60,3 +60,26 @@ TSTree *TSTree_insert(TSTree *node, const char *key, size_t len, void *value)
 {
   return TSTree_insert_base(node, node, key, len, value);
 }
+
+void *TSTree_search(TSTree *root, const char *key, size_t len)
+{
+  TSTree *node = root;
+  size_t i = 0;
+
+  while(i < len && node) {
+    if(key[i] < node->splitchar) {
+      node = node->low;
+    } else if(key[i] == node->splitchar) {
+      i++;
+      if(i < len) node = node->equal;
+    } else {
+      node = node->high;
+    }
+  }
+
+  if(node) {
+    return node->value;
+  } else {
+    return NULL;
+  }
+}
