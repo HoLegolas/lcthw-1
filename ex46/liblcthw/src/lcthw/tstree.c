@@ -126,3 +126,13 @@ void TSTree_traverse(TSTree *node, TSTree_traverse_cb cb, void *data)
   if(node->high) TSTree_traverse(node->high, cb, data);
   if(node->value) cb(node->value, data);
 }
+
+void TSTree_destroy(TSTree *node)
+{
+  if(node == NULL) return;
+
+  if(node->low) TSTree_destroy(node->low);
+  if(node->equal) TSTree_destroy(node->equal);
+  if(node->high) TSTree_destroy(node->high);
+  free(node);
+}
