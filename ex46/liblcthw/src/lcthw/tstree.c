@@ -116,3 +116,13 @@ void *TSTree_search_prefix(TSTree *root, const char *key, size_t len)
 
   return node ? node->value : NULL;
 }
+
+void TSTree_traverse(TSTree *node, TSTree_traverse_cb cb, void *data)
+{
+  if(!node) return;
+
+  if(node->low) TSTree_traverse(node->low, cb, data);
+  if(node->equal) TSTree_traverse(node->equal, cb, data);
+  if(node->high) TSTree_traverse(node->high, cb, data);
+  if(node->value) cb(node->value, data);
+}
