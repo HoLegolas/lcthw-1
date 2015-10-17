@@ -83,3 +83,36 @@ void *TSTree_search(TSTree *root, const char *key, size_t len)
     return NULL;
   }
 }
+
+void *TSTree_search_prefix(TSTree *root, const char *key, size_t len)
+{
+  if(len == 0) return NULL;
+
+  TSTree *node = root;
+  TSTree *last = NULL;
+  size_t i = 0;
+
+  while(i < len && node) {
+    if(key[i] < node->splitchar) {
+      node = node->low;
+    } else if(key[i] == node->splitchar) {
+      i++;
+      if(i < len) {
+	if(node->value) last = node;
+	node = node->equal;
+      }
+    } else {
+      node = node->high;
+    }
+  }
+
+  node = node ? node : last;
+
+  // traverse until we find the first value in the equal chain
+  // this is then the first node with this prefix
+  while(node && !node->value) {
+    node = node->value;
+  }
+
+  return node ? node->value : NULL;
+}
