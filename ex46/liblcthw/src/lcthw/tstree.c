@@ -56,3 +56,7 @@ static inline TSTree *TSTree_insert_base(TSTree *root, TSTree *node,
   return node;
 }
 
+TSTree *TSTree_insert(TSTree *node, const char *key, size_t len, void *value)
+{
+  return TSTree_insert_base(node, node, key, len, value);
+}
