@@ -55,11 +55,25 @@ char *test_insert()
   return NULL;
 }
 
+char *test_search_exact()
+{
+  // tst returns the last one inserted
+  void *res = TSTree_search(node, bdata(&test1), blength(&test1));
+  mu_assert(res == valueA, "Got the wrong value back, should get A, not B");
+
+  // tst does not find if not exact
+  res = TSTree_search(node, "TESTNO", strlen("TESTNO"));
+  mu_assert(res == NULL, "Should not find anything.");
+
+  return NULL;
+}
+
 char *all_tests()
 {
   mu_suite_start();
 
   mu_run_test(test_insert);
+  mu_run_test(test_search_exact);
 
   return NULL;
 }
