@@ -68,12 +68,19 @@ char *test_search_exact()
   return NULL;
 }
 
+char *test_destroy()
+{
+  TSTree_destroy(node);
+  return NULL;
+}
+
 char *all_tests()
 {
   mu_suite_start();
 
   mu_run_test(test_insert);
   mu_run_test(test_search_exact);
+  mu_run_test(test_destroy);
 
   return NULL;
 }
