@@ -117,6 +117,7 @@ char *all_tests()
   mu_run_test(test_insert);
   mu_run_test(test_search_exact);
   mu_run_test(test_search_prefix);
+  mu_run_test(test_traverse);
   mu_run_test(test_destroy);
 
   return NULL;
