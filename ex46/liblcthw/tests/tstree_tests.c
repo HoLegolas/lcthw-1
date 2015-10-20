@@ -94,6 +94,16 @@ void TSTree_traverse_test_cb(void *value, void *data)
   traverse_count++;
 }
 
+char *test_traverse()
+{
+  traverse_count = 0;
+  TSTree_traverse(node, TSTree_traverse_test_cb, valueA);
+  debug("traverse count is: %d", traverse_count);
+  mu_assert(traverse_count == 4, "Didn't find 4 keys.");
+
+  return NULL;
+}
+
 char *test_destroy()
 {
   TSTree_destroy(node);
