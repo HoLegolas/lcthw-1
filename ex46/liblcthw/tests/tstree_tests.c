@@ -87,6 +87,13 @@ char *test_search_prefix()
   return NULL;
 }
 
+void TSTree_traverse_test_cb(void *value, void *data)
+{
+  assert(value != NULL && "Should not get NULL value.");
+  assert(data == valueA && "Expecting valueA as the data.");
+  traverse_count++;
+}
+
 char *test_destroy()
 {
   TSTree_destroy(node);
