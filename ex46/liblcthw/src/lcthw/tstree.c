@@ -111,7 +111,7 @@ void *TSTree_search_prefix(TSTree *root, const char *key, size_t len)
   // traverse until we find the first value in the equal chain
   // this is then the first node with this prefix
   while(node && !node->value) {
-    node = node->value;
+    node = node->equal;
   }
 
   return node ? node->value : NULL;
