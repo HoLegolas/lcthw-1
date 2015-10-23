@@ -40,16 +40,20 @@ struct tagbstring test4 = bsStatic("T");
 
 char *test_insert()
 {
-  node = TSTree_insert(node, bdata(&test1), blength(&test1), valueA);
+  bstring ptest1 = &test1;
+  node = TSTree_insert(node, bdata(ptest1), blength(ptest1), valueA);
   mu_assert(node != NULL, "Failed to insert into tst.");
 
-  node = TSTree_insert(node, bdata(&test2), blength(&test2), valueA);
+  bstring ptest2 = &test2;
+  node = TSTree_insert(node, bdata(ptest2), blength(ptest2), valueA);
   mu_assert(node != NULL, "Failed to insert into tst with second name.");
 
-  node = TSTree_insert(node, bdata(&test3), blength(&test3), reverse);
+  bstring ptest3 = &test3;
+  node = TSTree_insert(node, bdata(ptest3), blength(ptest3), reverse);
   mu_assert(node != NULL, "Failed to insert into tst with reverse name.");
 
-  node = TSTree_insert(node, bdata(&test4), blength(&test4), value4);
+  bstring ptest4 = &test4;
+  node = TSTree_insert(node, bdata(ptest4), blength(ptest4), value4);
   mu_assert(node != NULL, "Failed to insert into tst with fourth name.");
 
   return NULL;
@@ -58,7 +62,8 @@ char *test_insert()
 char *test_search_exact()
 {
   // tst returns the last one inserted
-  void *res = TSTree_search(node, bdata(&test1), blength(&test1));
+  bstring ptest1 = &test1;
+  void *res = TSTree_search(node, bdata(ptest1), blength(ptest1));
   mu_assert(res == valueA, "Got the wrong value back, should get A, not B");
 
   // tst does not find if not exact
@@ -70,11 +75,12 @@ char *test_search_exact()
 
 char *test_search_prefix()
 {
-  void *res = TSTree_search_prefix(node, bdata(&test1), blength(&test1));
+  bstring ptest1 = &test1;
+  void *res = TSTree_search_prefix(node, bdata(ptest1), blength(ptest1));
   debug("result: %p, expected: %p", res, valueA);
   mu_assert(res == valueA, "Got wrong valueA by prefix.");
 
-  res = TSTree_search_prefix(node, bdata(&test1), 1);
+  res = TSTree_search_prefix(node, bdata(ptest1), 1);
   debug("result: %p, expected: %p", res, valueA);
   mu_assert(res == value4, "Got wrong value4 by prefix of 1.");
 
