@@ -63,3 +63,16 @@ TSTree *load_routes(const char *file)
   if(line) bdestroy(line);
   return NULL;
 }
+
+bstring match_url(TSTree *routes, bstring url)
+{
+  bstring route = TSTree_search(routes, bdata(url), blength(url));
+
+  if(route == NULL) {
+    printf("No exact match found, trying prefix.\n");
+    route = TSTree_search_prefix(routes, bdata(url), blength(url));
+  }
+
+  return route;
+}
+
