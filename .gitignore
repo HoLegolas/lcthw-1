@@ -5,6 +5,7 @@ GRTAGS
 build/
 netclient
 variant
+urlor
 
 syntax: glob
 *.pyc
