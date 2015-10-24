@@ -76,3 +76,18 @@ bstring match_url(TSTree *routes, bstring url)
   return route;
 }
 
+bstring read_line(const char *prompt)
+{
+  printf("%s", prompt);
+
+  bstring result = bgets((bNgetc)fgetc, stdin, '\n');
+  check_debug(result != NULL, "stdin closed.");
+
+  check(btrimws(result) == BSTR_OK, "Failed to trim.");
+
+  return result;
+
+ error:
+  return NULL;
+}
+
