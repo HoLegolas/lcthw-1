@@ -97,3 +97,8 @@ void bdestroy_cb(void *value, void *ignored)
   bdestroy((bstring)value);
 }
 
+void destroy_routes(TSTree *routes)
+{
+  TSTree_traverse(routes, bdestroy_cb, NULL);
+  TSTree_destroy(routes);
+}
