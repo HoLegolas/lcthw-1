@@ -39,3 +39,27 @@ TSTree *add_route_data(TSTree *routes, bstring line)
   return NULL;
 }
 
+TSTree *load_routes(const char *file)
+{
+  TSTree *routes = NULL;
+  bstring line = NULL;
+  FILE *routes_map = NULL;
+
+  routes_map = fopen(file, "r");
+  check(routes_map != NULL, "Failed to open routes: %s", file);
+
+  while((line = bgets((bNgetc)fgetc, routes_map, '\n')) != NULL) {
+    check(btrimws(line) == BSTR_OK, "Failed to trim line.");
+    routes = add_route_data(routes, line);
+    check(routes != NULL, "Failed to add route.");
+    bdestroy(line);
+  }
+
+  fclose(routes_map);
+  return routes;
+
+ error:
+  if(routes_map) fclose(routes_map);
+  if(line) bdestroy(line);
+  return NULL;
+}
