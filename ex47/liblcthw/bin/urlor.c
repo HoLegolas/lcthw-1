@@ -102,3 +102,35 @@ void destroy_routes(TSTree *routes)
   TSTree_traverse(routes, bdestroy_cb, NULL);
   TSTree_destroy(routes);
 }
+
+int main(int argc, char *argv[])
+{
+  bstring url = NULL;
+  bstring route = NULL;
+  check(argc == 2, "USAGE: urlor <urlfile>");
+
+  TSTree *routes = load_routes(argv[1]);
+  check(routes != NULL, "Your route file has an error.");
+
+  while(1) {
+    url = read_line("URL> ");
+    check_debug(url != NULL, "goodbye.");
+
+    route = match_url(routes, url);
+
+    if(route) {
+      printf("MATCH: %s == %s\n", bdata(url), bdata(route));
+    } else {
+      printf("FAIL: %s\n", bdata(url));
+    }
+
+    bdestroy(url);
+  }
+
+  destroy_routes(routes);
+  return 0;
+
+ error:
+  destroy_routes(routes);
+  return 1;
+}
