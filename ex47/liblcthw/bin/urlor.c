@@ -91,3 +91,9 @@ bstring read_line(const char *prompt)
   return NULL;
 }
 
+void bdestroy_cb(void *value, void *ignored)
+{
+  (void)ignored;
+  bdestroy((bstring)value);
+}
+
